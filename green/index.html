@@ -318,11 +318,11 @@
                                 </li>
 
                                 <li>
-                                    <strong><a href="#">かつどうにっし</a>
+                                    <strong><a href="#" id="change_view_button">かつどうにっし</a>
                                     </strong>
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"></i>さーくるのぺーじ</button>
+                            <button type="button" class="btn btn-default"><a style="text-decoration: none;color:black;" href="index2.html"></i>さーくるのぺーじ</a></button>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>
@@ -536,18 +536,140 @@
     <script type="text/javascript" src="js/fullcalendar.min.js"></script>
     <script>
     $(function(){
+      var cal_flg = false;
+      var img_flg = true;
       $('#calendar').fullCalendar({
         header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay,listWeek'
+			},
+      navLinks: true, // can click day/week names to navigate views
+			editable: true,
+			eventLimit: true,
+      defaultView: 'agendaDay',
+      aditable: true,
+      events: [
+				{
+          id: 1,
+					title: 'All Day Event',
+					start: '2017-04-01'
+				},
+				{
+          id: 2,
+					title: 'Long Event',
+					start: '2017-04-07',
+					end: '2017-04-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-04-09T16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-04-16T16:00:00'
+				},
+				{
+          id:3,
+					title: 'Conference',
+					start: '2017-04-11',
+					end: '2017-04-13',
+          editable: true
+				},
+				{
+          id:4,
+					title: 'Meeting',
+					start: '2017-04-12T10:30:00',
+					end: '2017-04-12T12:30:00'
+				},
+				{
+          id:5,
+					title: 'Lunch',
+					start: '2017-04-12T12:00:00'
+				},
+				{
+          id:6,
+					title: 'Meeting',
+					start: '2017-04-12T14:30:00'
+				},
+				{
+          id:7,
+					title: 'Happy Hour',
+					start: '2017-04-12T17:30:00'
+				},
+				{
+          id:8,
+					title: 'Dinner',
+					start: '2017-04-12T20:00:00'
+				},
+				{
+          id:9,
+					title: 'Birthday Party',
+					start: '2017-04-13T07:00:00'
+				},
+				{
+          id:10,
+					title: 'Click for Google',
+					start: '2017-04-28'
+				}
+			],
+      dayClick: function(date, allDay, jsEvent, view){
+        var title = prompt('予定を入力してください:');
+        if(title == null ) return;
+        console.log(String(title));
+        if(title!="" && title.match(/\S/g)){
+          $('#calendar').fullCalendar('renderEvent', {
+            id:date,
+            title: title,
+            start: date,
+            allDay: allDay
+          });
+        }else{
+          alert("タイトルが登録されていません");
+        }
+      },
+      eventClick: function(calEvent, jsEvent, view) {
+        var title = prompt('予定を入力してください:', calEvent.title);
+        if(title == null) return;
+        if(title!="" && title.match(/\S/g)){
+				calEvent.title = title;
+				$('#calendar').fullCalendar('updateEvent', calEvent); //イベント（予定）の修正
+			}else{
+        console.log(calEvent.id);
+				$('#calendar').fullCalendar("removeEvents", calEvent.id); //イベント（予定）の削除
 			}
+        // change the border color just for fun
+        //$(this).css('border-color', 'red');
+
+    }
       });
       $("#cal_button").on("click",function(){
         $("#img_data").toggle("normal");
-        $("#calendar").toggle("normal");
+        $("#calendar").toggle("normal",function(){
+          if($(this).is(":visible")){
+            $('#calendar').fullCalendar('changeView', 'month');
+          }
+        });
       });
+      $("#change_view_button").on("click",function(){
+        $("#img_data").hide();
+        $('#calendar').show();
+        $('#calendar').fullCalendar('changeView', 'listWeek');
+      })
     });
+    /*
+    eventDblClick:function(event, jsEvent){
+			var title = prompt('予定を入力してください:', event.title);
+			if(title && title!=""){
+				event.title = title;
+				calendar.fullCalendar('updateEvent', event); //イベント（予定）の修正
+			}else{
+				calendar.fullCalendar("removeEvents", event.id); //イベント（予定）の削除
+			}
+	}
+    */
     </script>
 
 </body>
