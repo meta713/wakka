@@ -310,6 +310,56 @@
                             <hr class="star-primary">
                             <img src="img/portfolio/cabin.png" class="img-responsive img-centered" alt="" id="img_data">
                             <div id="calendar" style="display:none;"></div>
+                            <div id="activity_list" style="display:none;" class="row">
+                              <div class="col-sm-4 portfolio-item">
+                                <div style="background-color:#f5f8fa;padding:10px;border-radius:10px 10px 0px 0px;font-size:14px;">
+                                  登山に行きました！！
+                                </div>
+                                  <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                                      <div class="caption">
+                                          <div class="caption-content">
+                                          </div>
+                                      </div>
+                                      <img src="img/portfolio/cabin.png" class="img-responsive" alt="Cabin">
+                                  </a>
+                              </div>
+                              <div class="col-sm-4 portfolio-item">
+                                <div style="background-color:#f5f8fa;padding:10px;border-radius:10px 10px 0px 0px;font-size:14px;">
+                                  うんこしました！！
+                                </div>
+                                  <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                                      <div class="caption">
+                                          <div class="caption-content">
+                                          </div>
+                                      </div>
+                                      <img src="img/portfolio/cabin.png" class="img-responsive" alt="Cabin">
+                                  </a>
+                              </div>
+                              <div class="col-sm-4 portfolio-item">
+                                <div style="background-color:#f5f8fa;padding:10px;border-radius:10px 10px 0px 0px;font-size:14px;">
+                                  うんちっちいgなおsがお！！
+                                </div>
+                                  <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                                      <div class="caption">
+                                          <div class="caption-content">
+                                          </div>
+                                      </div>
+                                      <img src="img/portfolio/cabin.png" class="img-responsive" alt="Cabin">
+                                  </a>
+                              </div>
+                              <div class="col-sm-4 portfolio-item">
+                                <div style="background-color:#f5f8fa;padding:10px;border-radius:10px 10px 0px 0px;font-size:14px;">
+                                  がlsgじゃlskjがlsjsj！！
+                                </div>
+                                  <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                                      <div class="caption">
+                                          <div class="caption-content">
+                                          </div>
+                                      </div>
+                                      <img src="img/portfolio/cabin.png" class="img-responsive" alt="Cabin">
+                                  </a>
+                              </div>
+                            </div>
                             <p>ぶかつしょうかい</p>
                             <ul class="list-inline item-details">
                                 <li>
@@ -319,6 +369,11 @@
 
                                 <li>
                                     <strong><a href="#" id="change_view_button">かつどうにっし</a>
+                                    </strong>
+                                </li>
+
+                                <li>
+                                    <strong><a href="#" id="back_home_button">ほーむ</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -646,8 +701,9 @@
     }
       });
       $("#cal_button").on("click",function(){
-        $("#img_data").toggle("normal");
-        $("#calendar").toggle("normal",function(){
+        $("#img_data").hide("normal");
+        $("#activity_list").hide("normal");
+        $("#calendar").show("normal",function(){
           if($(this).is(":visible")){
             $('#calendar').fullCalendar('changeView', 'month');
           }
@@ -655,10 +711,17 @@
       });
       $("#change_view_button").on("click",function(){
         $("#img_data").hide("normal");
-        $('#calendar').show("normal",function(){
-          $('#calendar').fullCalendar('changeView', 'listWeek');
-        });
-      })
+        // $('#calendar').show("normal",function(){
+        //   $('#calendar').fullCalendar('changeView', 'listWeek');
+        // });
+        $("#calendar").hide("normal");
+        $("#activity_list").show("normal");
+      });
+      $("#back_home_button").on("click",function(){
+        $("#calendar").hide("normal");
+        $("#activity_list").hide("normal");
+        $("#img_data").show("normal");
+      });
     });
     /*
     eventDblClick:function(event, jsEvent){
