@@ -295,6 +295,9 @@
 
     <!-- Portfolio Modals -->
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+      <a href="#" style="position:fixed;bottom:190px;right:33px;border-radius:30px;border:solid 1px #ba4c63;width:60px;height:60px;color:#fff;z-index:10;text-align: center;line-height: 55px;" class="back_home_button"><img src="img/home.png"></img></a>
+      <a href="#" style="position:fixed;bottom:110px;right:33px;border-radius:30px;border:solid 1px #18bc9c;width:60px;height:60px;color:#fff;z-index:10;text-align: center;line-height: 60px;" class="cal_button"><img src="img/book.png"></img></a>
+      <a href="#" style="position:fixed;bottom:30px;right:33px;border-radius:30px;border:solid 1px #000;width:60px;height:60px;color:#fff;z-index:10;text-align: center;line-height: 52.7px;" class="change_view_button"><img src="img/active.png"></img></a>
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -306,10 +309,10 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>cercle name</h2>
+                            <h2>P&D</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/cabin.png" class="img-responsive img-centered" alt="" id="img_data">
-                            <div id="calendar" style="display:none;"></div>
+                            <div id="calendar" style="display:none;margin-bottom:30px;"></div>
                             <div id="activity_list" style="display:none;" class="row">
                               <div class="col-sm-4 portfolio-item">
                                 <div style="background-color:#f5f8fa;padding:10px;border-radius:10px 10px 0px 0px;font-size:14px;">
@@ -360,20 +363,21 @@
                                   </a>
                               </div>
                             </div>
-                            <p>ぶかつしょうかい</p>
+                            <h4>サークル紹介</h4>
+                            <hr class="star-light">
+                            <p>P&D – Planning and Development – はITサービスの開発・運用を対象とした技術を修得すること目的として活動しています。</p>
                             <ul class="list-inline item-details">
+                              <li>
+                                  <strong><a href="#" class="back_home_button">ほーむ</a>
+                                  </strong>
+                              </li>
                                 <li>
-                                    <strong><a href="#" id="cal_button">すけじゅーる</a>
+                                    <strong><a href="#" class="cal_button">すけじゅーる</a>
                                     </strong>
                                 </li>
 
                                 <li>
-                                    <strong><a href="#" id="change_view_button">かつどうにっし</a>
-                                    </strong>
-                                </li>
-
-                                <li>
-                                    <strong><a href="#" id="back_home_button">ほーむ</a>
+                                    <strong><a href="#" class="change_view_button">かつどうにっし</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -700,7 +704,7 @@
 
     }
       });
-      $("#cal_button").on("click",function(){
+      $(".cal_button").on("click",function(){
         $("#img_data").hide("normal");
         $("#activity_list").hide("normal");
         $("#calendar").show("normal",function(){
@@ -709,7 +713,7 @@
           }
         });
       });
-      $("#change_view_button").on("click",function(){
+      $(".change_view_button").on("click",function(){
         $("#img_data").hide("normal");
         // $('#calendar').show("normal",function(){
         //   $('#calendar').fullCalendar('changeView', 'listWeek');
@@ -717,7 +721,7 @@
         $("#calendar").hide("normal");
         $("#activity_list").show("normal");
       });
-      $("#back_home_button").on("click",function(){
+      $(".back_home_button").on("click",function(){
         $("#calendar").hide("normal");
         $("#activity_list").hide("normal");
         $("#img_data").show("normal");
